@@ -125,3 +125,48 @@
       // Reset the game
       function
       
+function resetGame() {
+snake = [2, 1, 0];
+direction = 1;
+render();
+startGame();
+}
+
+  // Handle keyboard input
+  function handleKeydown(event) {
+    const key = event.keyCode;
+
+    // ArrowUp
+    if (key === 38 && direction !== boardSize) {
+      direction = -boardSize;
+    }
+    // ArrowDown
+    else if (key === 40 && direction !== -boardSize) {
+      direction = boardSize;
+    }
+    // ArrowLeft
+    else if (key === 37 && direction !== 1) {
+      direction = -1;
+    }
+    // ArrowRight
+    else if (key === 39 && direction !== -1) {
+      direction = 1;
+    }
+  }
+
+  // Start the game
+  function startGame() {
+    gameLoop = setInterval(moveSnake, interval);
+  }
+
+  // Event listener for keydown
+  document.addEventListener('keydown', handleKeydown);
+
+  // Initialize the game
+  render();
+  generateFood();
+  startGame();
+});
+</script>
+</body>
+</html>
